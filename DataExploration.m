@@ -1,3 +1,9 @@
+clear all;
+close all;
+clc;
+
+load('spikes.mat');
+
 % All spikes
 %figure(1)
 %for i = 1:length(spikes)

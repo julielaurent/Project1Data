@@ -6,7 +6,6 @@ function [ u ] = KMeans( centersInit, K, N, sampleVec )
 %   N -> nombre total de samples
 %   k -> iteration on clusters
 %   K -> nombre tot de clusers
-%   
 
 u = centersInit; %vector with initialization of all centers
 u0 = zeros(size(u));
