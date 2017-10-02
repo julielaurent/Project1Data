@@ -14,7 +14,7 @@ r = zeros(N,K);
 dist = zeros(N,K);
 s = sampleVec;
 
-while (abs(norm((u-u0))) < 10^-8)
+while (abs(norm((u-u0))) > 10^-8)
     
     u0 = u;
     
