@@ -39,7 +39,7 @@ subplot(2,3,6)
 boxplot(spikesPCA(:,3),'orientation','horizontal')
 xlabel('PC3')
 
-figure
+figure(5)
 plotmatrix(spikesPCA)
 
 
