@@ -1,0 +1,97 @@
+close all;
+clear all;
+clc;
+
+load('spikes.mat');
+
+% % Plot all spikes on same plot
+% figure('Color','w');
+% for i=1:6000
+%     plot(spikes(i,:));
+%     hold on;
+% end
+% %verify axs labels
+% set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
+% xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
+% xlabel('Time [ms]');
+% ylabel('Amplitude');
+% hold off;
+
+% % Plot histograms and boxplots for each principal component
+% figure('Color','w');
+% 
+% subplot(3,1,1);
+% scatter(spikesPCA(:,1), spikesPCA(:,2), 5, '.');
+% xlabel('PC1'); ylabel('PC2');
+% axis([-2.5 2.5 -2 2]);
+% 
+% subplot(3,1,2);
+% scatter(spikesPCA(:,1), spikesPCA(:,3), 5, '.');
+% xlabel('PC1'); ylabel('PC3');
+% axis([-2.5 2.5 -2 2]);
+% 
+% subplot(3,1,3);
+% scatter(spikesPCA(:,2), spikesPCA(:,3), 5, '.');
+% xlabel('PC2'); ylabel('PC3');
+% axis([-2.5 2.5 -2 2]);
+
+% % Plot a 3D scatter of all plincipal components
+% figure('Color','w');
+% scatter3(spikesPCA(:,1),spikesPCA(:,2), spikesPCA(:,3), 10, '.');
+% xlabel('PC1'); ylabel('PC2'); zlabel('PC3');
+
+% Compare distributions of each principal component with histograms and
+% boxplots
+figure('Color','w');
+
+subplot(3,3,[1,4]);
+histogram(spikesPCA(:,1));
+axis([-3 3 0 700]);
+title('PC1');
+
+subplot(3,3,[2,5]);
+histogram(spikesPCA(:,2));
+axis([-2 2 0 700]);
+title('PC2');
+
+subplot(3,3,[3,6]);
+histogram(spikesPCA(:,3));
+axis([-2 2 0 700]);
+title('PC3');
+
+subplot(3,3,7);
+boxplot(spikesPCA(:,1),'orientation','horizontal','OutlierSize',2);
+xlabel('PC1');
+axis([-3 3 0.5 1.5]);
+yticklabels({''});
+
+subplot(3,3,8);
+boxplot(spikesPCA(:,2),'orientation','horizontal','OutlierSize',2);
+xlabel('PC2');
+axis([-3 3 0.5 1.5]);
+yticklabels({''});
+
+subplot(3,3,9);
+boxplot(spikesPCA(:,3),'orientation','horizontal','OutlierSize',2);
+xlabel('PC3');
+axis([-3 3 0.5 1.5]);
+yticklabels({''});
+
+% 
+% figure(5)
+% plotmatrix(spikesPCA)
+
+% figure(6)
+% idx=kmeans(spikesPCA,3);
+% gplotmatrix(spikesPCA,[],idx);
+% 
+% for K=1:5 
+%     idx=kmeans(spikesPCA,K);
+%     figure(6+K)
+%     for i=1:K
+%         plot(mean(spikes(find(idx==i),:)))
+%         hold on
+%     end
+%     hold off
+% end
+% 
