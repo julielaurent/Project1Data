@@ -23,7 +23,7 @@ ylabel('Amplitude');
 box off;
 hold off;
 
-% Scatter Representation
+% Scatter Representation --> Pas compris
 figure('Color','w');
 for i = 1:3
     scatter3(spikesPCA(find(idx == i),1),spikesPCA(find(idx == i),2),spikesPCA(find(idx == i),3),8,'.');
@@ -33,9 +33,9 @@ plot3(C(:,1),C(:,2),C(:,3),'xk','MarkerSize',8,'LineWidth',1.5);
 xlabel('PC1'); ylabel('PC2'); zlabel('PC3');
 hold off;
 
-%% REVOIR TOUTE CETTE PARTIE (50 fois avec différentes conditions initiales)
-% % We try to execute 50 times the clustering with random initial conditions
-% % to see if it changes the result
+%% REVOIR TOUTE CETTE PARTIE (50 fois avec diff?rentes conditions initiales) 
+% % We try to execute 50 times the kmean clustering with random initial conditions
+% % to see if it changes the result  
 % % K = 3;
 % % vec1 = zeros(50,100);
 % % vec2 = zeros(50,100);
@@ -86,7 +86,7 @@ hold off;
 for K = 2:10
     
     [idx,C,sumd] = kmeans(spikesPCA,K);
-    %sumd is the sum of point-to-centroid distances in each cluster
+    %sumd is the sum ofpoint-to-centroid distances in each cluster
     %total sum of distances
     sTot(K) = sum(sumd);
     
@@ -118,7 +118,7 @@ axis([2 50 0 3000]);
 xlabel('Number of Clusters'); ylabel('Within-cluster sum of squared errors');
 
 %% BEST NUMBER OF CLUSTERS
-% On a pas du tout les mêmes résultats avec les différents criterions, que
+% On a pas du tout les m?mes r?sultats avec les diff?rents criterions, que
 % faire ? Quel K choisir ?
 
 %eva1 = evalclusters(spikesPCA,'kmeans','CalinskiHarabasz','KList',[1:6]) % Optimal K = 3

@@ -11,7 +11,7 @@ for i=1:6000
     hold on;
 end
 %verify axs labels
-set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
+%set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
 xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
 xlabel('Time [ms]');
 ylabel('Amplitude');
@@ -91,23 +91,7 @@ axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
 
-% Do we keep this ??
+% Tout le bordel ensemble
 figure('Color','w')
 plotmatrix(spikesPCA,'.');
 box off;
-
-% In other script !
-% figure(6)
-% idx=kmeans(spikesPCA,3);
-% gplotmatrix(spikesPCA,[],idx);
-% 
-% for K=1:5 
-%     idx=kmeans(spikesPCA,K);
-%     figure(6+K)
-%     for i=1:K
-%         plot(mean(spikes(find(idx==i),:)))
-%         hold on
-%     end
-%     hold off
-% end
-% 
