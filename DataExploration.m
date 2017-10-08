@@ -11,11 +11,12 @@ for i=1:6000
     hold on;
 end
 %verify axs labels
-%set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
+set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
 xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
 xlabel('Time [ms]');
 ylabel('Amplitude');
 box off;
+title('Spikes')
 hold off;
 
 % Plot histograms and boxplots for each principal component
@@ -41,6 +42,16 @@ xlabel('PC2'); ylabel('PC3');
 set(gca,'XTick',-2.5:2.5);
 set(gca,'YTick',-2:2:2);
 box off;
+
+
+figure('Color','w');
+scatter(spikesPCA(:,1), spikesPCA(:,2), 5, '.');
+xlabel('PC1'); ylabel('PC2');
+set(gca,'XTick',-2.5:2.5);
+set(gca,'YTick',-2:2:2);
+title('PC1 vs PC2')
+box off;
+
 
 % Plot a 3D scatter of all plincipal components
 figure('Color','w');
@@ -90,6 +101,8 @@ boxplot(spikesPCA(:,3),'orientation','horizontal','OutlierSize',2);
 axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
+
+
 
 % Tout le bordel ensemble
 figure('Color','w')
