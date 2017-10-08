@@ -126,31 +126,31 @@ hold off;
 %% DIFFERENT NUMBER OF CLUSTERS
 
 % We try with different numbers of clusters
-for K = 1:5
+for K = 1:50
     
     [idx,C,sumd] = kmeans(spikesPCA,K);
     %sumd is the sum ofpoint-to-centroid distances in each cluster
     %total sum of distances
     sTot(K) = sum(sumd);
     
-    figure('Color','w');
-    % AP representation
-    for i = 1:K
-        plot(mean(spikes(find(idx == i),:)));
-        hold on;
-    end
-    title([num2str(K) ' clusters']);
-    set(gca,'XLim',[0 100],'XTick',linspace(0,100,5));
-    xticklabels({'0'  '0.5' '1' '1.5' '2'});
-    xlabel('Time [ms]');
-    ylabel('Amplitude');
-    box off;
-    hold off;
-    
-    % Gplot representation
-    figure('Color','w');
-    gplotmatrix(spikesPCA,[],idx);
-    title([num2str(K) ' clusters']);  
+%     figure('Color','w');
+%     % AP representation
+%     for i = 1:K
+%         plot(mean(spikes(find(idx == i),:)));
+%         hold on;
+%     end
+%     title([num2str(K) ' clusters']);
+%     set(gca,'XLim',[0 100],'XTick',linspace(0,100,5));
+%     xticklabels({'0'  '0.5' '1' '1.5' '2'});
+%     xlabel('Time [ms]');
+%     ylabel('Amplitude');
+%     box off;
+%     hold off;
+%     
+%     % Gplot representation
+%     figure('Color','w');
+%     gplotmatrix(spikesPCA,[],idx);
+%     title([num2str(K) ' clusters']);  
   
 end
 
@@ -159,6 +159,7 @@ figure('Color','w');
 plot(sTot,'x');
 axis([2 50 0 3000]);
 xlabel('Number of Clusters'); ylabel('Within-cluster sum of squared errors');
+title('Impact of the number of clusters on the Within-cluster sum of squared errors')
 
 %% BEST NUMBER OF CLUSTERS
 % On a pas du tout les m?mes r?sultats avec les diff?rents criterions, que
