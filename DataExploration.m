@@ -100,7 +100,7 @@ axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
 
-% Tout le bordel ensemble
+% Tout ensemble
 figure('Color','w')
 plotmatrix(spikesPCA,'.');
 box off;

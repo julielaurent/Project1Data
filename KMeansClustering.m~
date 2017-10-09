@@ -76,20 +76,20 @@ load('spikes.mat');
  %% DIFFERENT KMEAN WITH DIFFERENT INITIAL CONDITIONS AND DIFFERENT NUMBER OF CLUSTERS
 
 it = 9; 
-for K = 3:4
+for K = 2:4
     figure('Color','w');
     for i = 1:it
         subplot(3,3,i) 
         hold on
         [idx,C] = kmeans(spikesPCA, K);
-        gscatter(spikesPCA(:,1),spikesPCA(:,2),idx);
+        gscatter(spikesPCA(:,1),spikesPCA(:,2),idx,'brg','...');
         plot(C(1:K,1),C(1:K,2),'xk', 'MarkerSize',5,'LineWidth',3); % plot the center of the cluster
         xlabel('PC1');
         ylabel('PC2');
         title(['Iteration ' num2str(i)])
         hold off
     end
-end    
+%end    
 
 % %% DIFFERENT NUMBER OF CLUSTERS
 % 
