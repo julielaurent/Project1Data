@@ -43,7 +43,6 @@ set(gca,'XTick',-2.5:2.5);
 set(gca,'YTick',-2:2:2);
 box off;
 
-
 figure('Color','w');
 scatter(spikesPCA(:,1), spikesPCA(:,2), 5, '.');
 xlabel('PC1'); ylabel('PC2');
@@ -100,24 +99,6 @@ boxplot(spikesPCA(:,3),'orientation','horizontal','OutlierSize',2);
 axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
-
-% Test normality on different PCs = features
-% returns 1 if data does not come from std normal distribution
-% retruns 0 if data comes from std normal distribution
-[h1,p1] = jbtest(spikesPCA(:,1));
-[h2,p2] = jbtest(spikesPCA(:,2));
-[h3,p3] = jbtest(spikesPCA(:,3));
-% all 1 -> PCs not normally distributed -> use Kruskal Wallis instead of
-% ANOVA = TEST IF THERE IS DIFFERENCE BETWEEN GROUPS
-[p,tbl,stats] = kruskalwallis(spikesPCA);
-% p < 0.05 -> data in each column comes from different distributions
-% TEST WITH GROUP IS DIFFEREN FROM WHICH
-% Dunn-sidak used as a criterium for non-parametric tests (instead of
-% Bonferroni)
-c = multcompare(stats,'CType','dunn-sidak');
-% Result : no group has the same mean as another -> all groups are
-% different
-
 
 % Tout le bordel ensemble
 figure('Color','w')

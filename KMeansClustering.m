@@ -9,16 +9,6 @@ load('spikes.mat');
 K = 3;
 [idx,C] = kmeans(spikesPCA,K);
 gplotmatrix(spikesPCA,[],idx);
-neuron1 = spikesPCA(find(idx == 1),:);
-neuron2 = spikesPCA(find(idx == 2),:);
-neuron3 = spikesPCA(find(idx == 3),:);
-
-%Normality test
-[h1, p1] = jbtest([neuron1(:,1) ; neuron1(:,2) ; neuron1(:,3)]);
-[h2, p2] = jbtest([neuron2(:,1) ; neuron2(:,2) ; neuron2(:,3)]);
-[h3, p3] = jbtest([neuron3(:,1) ; neuron3(:,2) ; neuron3(:,3)]);
-% Results of h -> all 1 -> normality rejected -> Kruskal-Wallis
-%[p,tbl,stats] = kruskalwallis(spikesPCA,idx);
 
 % AP Representation
 figure('Color','w');
