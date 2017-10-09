@@ -84,6 +84,7 @@ hold off;
 
 figure('Color','w');
 plot(mean(spikes(find(idx == 1),:)));
+box off;
 hold off;
 % %figure(1);
 % % for i = 1:50
@@ -169,6 +170,7 @@ plot(sTot,'x');
 axis([2 50 0 3000]);
 xlabel('Number of Clusters'); ylabel('Within-cluster sum of squared errors');
 title('Impact of the number of clusters on the Within-cluster sum of squared errors')
+box off;
 
 %% BEST NUMBER OF CLUSTERS
 % On a pas du tout les m?mes r?sultats avec les diff?rents criterions, que
@@ -177,9 +179,9 @@ title('Impact of the number of clusters on the Within-cluster sum of squared err
 eva1 = evalclusters(spikesPCA,'kmeans','CalinskiHarabasz','KList',[1:50]); % Optimal K = 3
 % Utlise distance euclidienne, comme Kmean
 figure('Color','w');
-plot(eva1)
-title('Calinski Harabasz criterion')
-
+plot(eva1);
+title('Calinski Harabasz criterion');
+box off;
 %-> Mais demander aux assistant
 
 %eva2 = evalclusters(spikesPCA,'kmeans','DaviesBouldin','KList',[1:6]) % Optimal K = 2
