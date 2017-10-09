@@ -9,23 +9,29 @@ load('spikes.mat');
 K = 3;
 [idx,C] = kmeans(spikesPCA,K);
 gplotmatrix(spikesPCA,[],idx);
-neuron1 = spikesPCA(find(idx == 1),:);
+neuron1 = spikes(find(idx == 1),:);
+neuron2 = spikes(find(idx == 2),:);
+neuron3 = spikes(find(idx == 3),:);
 
-%AP Representation
+%Normality test
+[h1, p1] = jbtest([neuron1(:,1) neuron1(:,2) neuron]);
+
+
+% AP Representation
 figure('Color','w');
-for i = 1:3
-    %plot(mean(spikes(find(idx == i),:)));
-    %stderror = std(spikes(find(idx == i),:))./sqrt(length(spikes(find(idx == i),:)));   
-    shadedErrorBar([],mean(spikes(find(idx == i),:)),std(spikes(find(idx == i),:)));
-    hold on;
-    % Test normality
-    % returns 1 if data does not come from std normal distribution
-    % retruns 0 if data comes from std normal distribution
-    [h(i),p(i)] = lillietest(mean(spikes(find(idx == i),:)));
-    % h are all 1 -> spikes are not normally distributed -> use Kruskal Wallis instead of
-    % ANOVA = TEST IF THERE IS DIFFERENCE BETWEEN GROUPS
-    
-end
+shadedErrorBar([],mean(spikes(find(idx == 1),:)),std(spikes(find(idx == 1),:)),'lineprops','g');
+hold on;
+shadedErrorBar([],mean(spikes(find(idx == 2),:)),std(spikes(find(idx == 2),:)),'lineprops','b');
+hold on;
+shadedErrorBar([],mean(spikes(find(idx == 3),:)),std(spikes(find(idx == 3),:)),'lineprops','r');
+
+% for i = 1:3
+%     %plot(mean(spikes(find(idx == i),:)));
+%     %stderror = std(spikes(find(idx == i),:))./sqrt(length(spikes(find(idx == i),:)));   
+%     shadedErrorBar([],mean(spikes(find(idx == i),:)),std(spikes(find(idx == i),:)));
+%     hold on;
+%     
+% end
 set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
 xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
 xlabel('Time [ms]');
@@ -33,15 +39,6 @@ ylabel('Amplitude');
 title('Mean of the spikes for each cluster')
 box off;
 hold off;
-
-[p,tbl,stats] = kruskalwallis(spikes,idx);
-% p < 0.05 -> data in each column comes from different distributions
-% TEST WITH GROUP IS DIFFEREN FROM WHICH
-% Dunn-sidak used as a criterium for non-parametric tests (instead of
-% Bonferroni)
-%c = multcompare(stats,'CType','dunn-sidak');
-% Result : no group has the same mean as another -> all groups are
-% different
 
 % Scatter Representation in 3D
 figure('Color','w');

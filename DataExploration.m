@@ -101,12 +101,12 @@ axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
 
-% Test normality on different PCs
+% Test normality on different PCs = features
 % returns 1 if data does not come from std normal distribution
 % retruns 0 if data comes from std normal distribution
-[h1,p1] = lillietest(spikesPCA(:,1));
-[h2,p2] = lillietest(spikesPCA(:,2));
-[h3,p3] = lillietest(spikesPCA(:,3));
+[h1,p1] = jbtest(spikesPCA(:,1));
+[h2,p2] = jbtest(spikesPCA(:,2));
+[h3,p3] = jbtest(spikesPCA(:,3));
 % all 1 -> PCs not normally distributed -> use Kruskal Wallis instead of
 % ANOVA = TEST IF THERE IS DIFFERENCE BETWEEN GROUPS
 [p,tbl,stats] = kruskalwallis(spikesPCA);

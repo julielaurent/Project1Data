@@ -13,15 +13,28 @@ neuron1 = spikesPCA(find(idx == 1),:);
 neuron2 = spikesPCA(find(idx == 2),:);
 neuron3 = spikesPCA(find(idx == 3),:);
 
+%Normality test
+[h1, p1] = jbtest([neuron1(:,1) ; neuron1(:,2) ; neuron1(:,3)]);
+[h2, p2] = jbtest([neuron2(:,1) ; neuron2(:,2) ; neuron2(:,3)]);
+[h3, p3] = jbtest([neuron3(:,1) ; neuron3(:,2) ; neuron3(:,3)]);
+% Results of h -> all 1 -> normality rejected -> Kruskal-Wallis
+%[p,tbl,stats] = kruskalwallis(spikesPCA,idx);
+
 % AP Representation
 figure('Color','w');
-for i = 1:3
-    %plot(mean(spikes(find(idx == i),:)));
-    %stderror = std(spikes(find(idx == i),:))./sqrt(length(spikes(find(idx == i),:)));   
-    shadedErrorBar([],mean(spikes(find(idx == i),:)),std(spikes(find(idx == i),:)));
-    hold on;
-    
-end
+shadedErrorBar([],mean(spikes(find(idx == 1),:)),std(spikes(find(idx == 1),:)),'lineprops','g');
+hold on;
+shadedErrorBar([],mean(spikes(find(idx == 2),:)),std(spikes(find(idx == 2),:)),'lineprops','b');
+hold on;
+shadedErrorBar([],mean(spikes(find(idx == 3),:)),std(spikes(find(idx == 3),:)),'lineprops','r');
+
+% for i = 1:3
+%     %plot(mean(spikes(find(idx == i),:)));
+%     %stderror = std(spikes(find(idx == i),:))./sqrt(length(spikes(find(idx == i),:)));   
+%     shadedErrorBar([],mean(spikes(find(idx == i),:)),std(spikes(find(idx == i),:)));
+%     hold on;
+%     
+% end
 set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
 xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
 xlabel('Time [ms]');
