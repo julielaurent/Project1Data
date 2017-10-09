@@ -58,7 +58,7 @@ hold off;
 
 
 
-%% REVOIR TOUTE CETTE PARTIE (50 fois avec diff?rentes conditions initiales) 
+%% REVOIR TOUTE CETTE PARTIE (50 fois avec différentes conditions initiales) 
 % % We try to execute 50 times the kmean clustering with random initial conditions
 % % to see if it changes the result  
 % % K = 3;
@@ -136,7 +136,7 @@ hold off;
 %% DIFFERENT NUMBER OF CLUSTERS
 
 % We try with different numbers of clusters
-for K = 1:5
+for K = 1:50
     
     [idx,C,sumd] = kmeans(spikesPCA,K);
     %sumd is the sum ofpoint-to-centroid distances in each cluster
