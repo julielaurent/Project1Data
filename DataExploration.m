@@ -10,7 +10,7 @@ for i=1:6000
     plot(spikes(i,:));
     hold on;
 end
-%verify axs labels
+%verify axis labels
 set(gca,'XLim',[0 100],'XTick',linspace(0,100,9));
 xticklabels({'0' '0.25' '0.5' '0.75' '1' '1.25' '1.5' '1.75' '2'});
 xlabel('Features as Time');
@@ -100,7 +100,7 @@ axis([-1.5 1.5 0.75 1.25]);
 yticklabels({''});
 box off;
 
-% Tout ensemble
+% Everything together
 figure('Color','w')
 plotmatrix(spikesPCA,'.');
 box off;
