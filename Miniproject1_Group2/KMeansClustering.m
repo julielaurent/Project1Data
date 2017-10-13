@@ -51,8 +51,8 @@ hold off;
 
 
 
-%% REVOIR TOUTE CETTE PARTIE (50 fois avec diff?rentes conditions initiales) 
-% % We try to execute 50 times the kmean clustering with random initial conditions
+%% 50 times with different initial conditions
+% % We execute 50 times the kmean clustering with random initial conditions
 % % to see if it changes the result  
 % % K = 3;
 
